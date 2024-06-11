@@ -18,6 +18,10 @@
     "target": "ES2022",
     "module": "ES2022",
     "useDefineForClassFields": false,
+    "paths": {
+      "baseUrl": ["./src"],
+      "tslib" : ["./node_modules/tslib/tslib.d.ts"]
+    },
     "lib": ["ES2022", "dom"]
   },
   "angularCompilerOptions": {
