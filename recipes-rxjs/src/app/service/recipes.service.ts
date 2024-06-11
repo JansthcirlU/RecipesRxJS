@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, filter, map, Observable, of } from 'rxjs';
+import { map, Observable, of } from 'rxjs';
 import { Recipe } from '../models/recipe';
 
 @Injectable({
@@ -57,22 +57,15 @@ export class RecipesService {
       recipe.ingredients.includes(this.ingredient);
   }
 
-  public filterOnKeyword(keyword: string): void {
+  public setFilters(keyword: string = this.keyword, categories: string = this.category, ingredient: string = this.ingredient): void {
     this.keyword = keyword;
-  }
-
-  public filterOnCategory(category: string): void {
-    this.category = category;
-  }
-
-  public filterOnIngredient(ingredient: string): void {
+    this.category = categories;
     this.ingredient = ingredient;
   }
 
   public reset(): void {
-    
+    this.keyword = '';
+    this.category = '';
+    this.ingredient = '';
   }
-  
-
-
 }

@@ -27,17 +27,14 @@ export class RecipesFilterComponent {
    }
 
   onSubmit() {
-    const keyword = this.filterForm.get('keyword')?.value;
-    const category = this.filterForm.get('category')?.value;
-    const ingredients = this.filterForm.get('ingredients')?.value;
-
-    if (keyword) {
-      this.recipesService.filterOnKeyword(keyword);
-    } else if (category) {
-      this.recipesService.filterOnCategory(category);
-    } else if (ingredients) {
-      this.recipesService.filterOnIngredient(ingredients);
-    }
+    let keyword = this.filterForm.get('keyword')?.value;
+    let category = this.filterForm.get('category')?.value;
+    let ingredients = this.filterForm.get('ingredients')?.value;
+    
+    this.recipesService.setFilters(
+      keyword ?? '', 
+      category ?? '', 
+      ingredients?? '');
   }
 
   onReset() {
