@@ -30,7 +30,7 @@ export class RecipesFilterComponent {
     let keyword = this.filterForm.get('keyword')?.value;
     let category = this.filterForm.get('category')?.value;
     let ingredients = this.filterForm.get('ingredients')?.value;
-    
+
     this.recipesService.setFilters(
       keyword ?? '', 
       category ?? '', 
