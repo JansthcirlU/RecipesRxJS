@@ -1,0 +1,20 @@
+.recipe-card {
+    max-width: 400px;
+    margin: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .recipe-card img {
+    height: 200px;
+    object-fit: cover;
+  }
+  
+  .recipe-card h2 {
+    font-size: 1.5em;
+    margin: 10px 0;
+  }
+  
+  .recipe-card p {
+    color: #666;
+  }
+  
