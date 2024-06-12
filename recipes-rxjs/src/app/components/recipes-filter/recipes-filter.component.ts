@@ -28,7 +28,9 @@ export class RecipesFilterComponent {
 
   onSubmit() {
     let keyword = this.filterForm.get('keyword')?.value;
-    let category = this.filterForm.get('category')?.value;
+    
+    let category = this.filterForm.get('category')?.value as Category;
+    
     let ingredients = this.filterForm.get('ingredients')?.value;
     
     this.recipesService.setFilters(
@@ -41,5 +43,4 @@ export class RecipesFilterComponent {
     this.filterForm.reset();
     this.recipesService.reset();
   }
-  
 }
