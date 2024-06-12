@@ -9,7 +9,7 @@ import { Category } from '../models/category';
 })
 export class RecipesService {
 
-  private recipes: Recipe[] = [
+  private recipes$: Observable<Recipe[]> = of([
     { 
       name: 'Spaghetti Carbonara', 
       category: 'Main', 
@@ -40,10 +40,8 @@ export class RecipesService {
       ingredients: ['beef', 'potatoes', 'carrots', 'onions', 'beef broth'], 
       steps: ['Brown beef', 'Add vegetables and broth', 'Simmer until tender'] 
     },
-  ];
+  ]);
 
-  private recipesSubject = new BehaviorSubject<Recipe[]>(this.recipes);
-  recipes$ = this.recipesSubject.asObservable();
 
   private filterSubject = new BehaviorSubject<RecipesFilter | undefined>(undefined);
   filter$ = this.filterSubject.asObservable();
