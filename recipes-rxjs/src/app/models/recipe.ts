@@ -3,7 +3,7 @@ import { Category } from "./category";
 export interface Recipe {
     name: string;
     description?: string;
-    category: Category[];
+    category: Category;
     ingredients: string[];
     steps: string[];
     image?: string;

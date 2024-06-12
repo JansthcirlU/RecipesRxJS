@@ -1,1 +1,3 @@
-export type Category = 'Main' | 'Dessert' | 'Appetizer';
+
+export type Category = 'Main' | 'Dessert' | 'Appetizer' | '';
+
