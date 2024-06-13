@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { NavbarComponent } from './components/navbar/navbar.component';
 import { RecipesFilterComponent } from './components/recipes-filter/recipes-filter.component';
+
 import { RecipeOverviewComponent } from './components/recipe-overview/recipe-overview.component';
 
 @Component({
@@ -9,7 +11,7 @@ import { RecipeOverviewComponent } from './components/recipe-overview/recipe-ove
   imports: [
     RecipeOverviewComponent,
     RouterOutlet, 
-    RecipesFilterComponent],
+    RecipesFilterComponent, NavbarComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
