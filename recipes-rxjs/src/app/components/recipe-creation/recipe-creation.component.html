@@ -1,1 +1,88 @@
-<p>recipe-creation works!</p>
+<div class="recipe-creation-overview">
+    <section class="recipe-creation-overview__header">
+        <h1>Create a new recipe</h1>
+        <p>Fill in the form below to create a new recipe</p>
+    </section>
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="recipe-creation-form">
+        <mat-form-field class="form-field">
+        <mat-label>Title</mat-label>
+        <input matInput placeholder="Title" formControlName="title">
+        <mat-error *ngIf="form.get('title')?.hasError('required')">
+            Title is required
+        </mat-error>
+        <mat-error *ngIf="form.get('title')?.hasError('maxlength')">
+            Title cannot exceed 60 characters
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="form-field">
+        <mat-label>Description</mat-label>
+        <textarea matInput placeholder="Description" formControlName="description"></textarea>
+        <mat-error *ngIf="form.get('description')?.hasError('required')">
+            Description is required
+        </mat-error>
+        <mat-error *ngIf="form.get('description')?.hasError('maxWords')">
+            Description cannot exceed 25 words
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="form-field">
+        <mat-label>Recipe image</mat-label>
+        <button mat-icon-button matPrefix (click)="f_input.click()">
+            <mat-icon>attach_file</mat-icon>
+        </button>
+        <input type="text" readonly matInput placeholder="Recipe Image" formControlName="image">
+        <input type="file" (change)="onFileSelected($event)" hidden #f_input>
+        <button mat-icon-button *ngIf="form.get('image')?.value" matSuffix (click)="removeImage()">
+            <mat-icon>delete</mat-icon>
+        </button>
+        <mat-error *ngIf="form.get('image')?.hasError('required')">
+            Image is required
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="form-field">
+        <mat-label>Difficulty</mat-label>
+        <mat-select placeholder="Difficulty" formControlName="difficulty">
+            <mat-option [value]="1">Piece of cake</mat-option>
+            <mat-option [value]="2">Easy</mat-option>
+            <mat-option [value]="3">Moderate</mat-option>
+            <mat-option [value]="4">Difficult</mat-option>
+            <mat-option [value]="5">Hard</mat-option>
+        </mat-select>
+        <mat-error *ngIf="form.get('difficulty')?.hasError('required')">
+            Difficulty is required
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="form-field">
+        <mat-label>Add tags</mat-label>
+        <mat-chip-grid #chipGrid aria-label="Enter tags">
+          <ng-container *ngFor="let tagControl of tagsArray.controls; let i = index">
+            <mat-chip-row *ngIf="tagControl.value && tagControl.value.trim() !== ''"
+                          (removed)="removeTag(i)"
+                          [aria-description]="'press enter to edit ' + tagControl.value">
+              {{ tagControl.value }}
+              <button matChipRemove [attr.aria-label]="'remove ' + tagControl.value">
+                <mat-icon>cancel</mat-icon>
+              </button>
+            </mat-chip-row>
+          </ng-container>
+          <input placeholder="New tag..."
+                 #tagInput
+                 [matChipInputFor]="chipGrid"
+                 [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                 (input)="onTagInputChange()"
+                 (matChipInputTokenEnd)="addTagFromInput($event)">
+        </mat-chip-grid>
+        <div class="helper-text" *ngIf="showHelperText">
+          Press Enter to add a tag
+        </div>
+        <mat-error *ngIf="form.get('tags')?.invalid">
+          At least one tag is required
+        </mat-error>
+      </mat-form-field>
+
+    <button class mat-raised-button type="submit">Submit</button>
+</form>
+</div>

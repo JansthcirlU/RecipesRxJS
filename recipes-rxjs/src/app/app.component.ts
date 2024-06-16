@@ -4,6 +4,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { RecipesFilterComponent } from './components/recipes-filter/recipes-filter.component';
 
 import { RecipeOverviewComponent } from './components/recipe-overview/recipe-overview.component';
+import { RecipeCreationComponent } from './components/recipe-creation/recipe-creation.component';
 
 @Component({
   selector: 'app-root',
@@ -11,7 +12,9 @@ import { RecipeOverviewComponent } from './components/recipe-overview/recipe-ove
   imports: [
     RecipeOverviewComponent,
     RouterOutlet, 
-    RecipesFilterComponent, NavbarComponent],
+    RecipesFilterComponent,
+    RecipeCreationComponent, 
+    NavbarComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })

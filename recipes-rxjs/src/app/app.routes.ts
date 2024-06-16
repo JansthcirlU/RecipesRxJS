@@ -3,5 +3,5 @@ import { RecipeCreationComponent } from './components/recipe-creation/recipe-cre
 
 export const routes: Routes = [
     { path: '', redirectTo: 'home', pathMatch: 'full' },
-    { path: 'create/recipe', component: RecipeCreationComponent },
+    { path: 'create', component: RecipeCreationComponent },
 ];

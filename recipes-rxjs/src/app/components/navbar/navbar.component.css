@@ -1,5 +1,6 @@
 mat-toolbar {
     background-color: aliceblue;
+    position: sticky;
     color: black;
     display: flex;
     justify-content: space-between;
