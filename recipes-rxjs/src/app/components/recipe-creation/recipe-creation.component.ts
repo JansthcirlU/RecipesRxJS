@@ -46,7 +46,7 @@ export class RecipeCreationComponent implements OnInit {
       description: ['', [Validators.required, this.wordCountValidator(25)]],
       image: [null, Validators.required],
       difficulty: [null, Validators.required],
-      tags: this.formBuilder.array([])
+      tags: this.formBuilder.array([], [Validators.required, this.minLengthArray(1)])
     });
   }
   
@@ -94,7 +94,7 @@ export class RecipeCreationComponent implements OnInit {
     if (this.form.valid) {
       console.log(this.form.value);
       this.snackBar.open('Recipe created successfully!', '', {
-        duration: 3000, // 3 seconds
+        duration: 3000,
       });
       setTimeout(() => {
         this.form.reset();
@@ -122,6 +122,13 @@ export class RecipeCreationComponent implements OnInit {
     return (control: AbstractControl): ValidationErrors | null => {
       const words = control.value ? control.value.split(/\s+/) : [];
       return words.length > maxWords ? { maxWords: { actualWords: words.length, maxWords } } : null;
+    };
+  }
+
+  minLengthArray(min: number) {
+    return (control: AbstractControl): ValidationErrors | null => {
+      if ((control as FormArray).length >= min) return null;
+      return { minLengthArray: { valid: false } };
     };
   }
 }
