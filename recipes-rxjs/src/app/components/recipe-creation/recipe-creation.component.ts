@@ -46,7 +46,7 @@ export class RecipeCreationComponent implements OnInit {
       description: ['', [Validators.required, this.wordCountValidator(25)]],
       image: [null, Validators.required],
       difficulty: [null, Validators.required],
-      tags: this.formBuilder.array([], Validators.required)
+      tags: this.formBuilder.array([])
     });
   }
   
