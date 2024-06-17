@@ -9,6 +9,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
 import { MatChipsModule, MatChipInputEvent } from '@angular/material/chips';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
+import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-recipe-creation',
@@ -33,7 +35,10 @@ export class RecipeCreationComponent implements OnInit {
   readonly separatorKeys: number[] = [ENTER, COMMA];
   @ViewChild('tagInput') tagInput!: ElementRef<HTMLInputElement>;
 
-  constructor(private formBuilder: FormBuilder, private cd: ChangeDetectorRef) { }
+  constructor(private formBuilder: FormBuilder, 
+    private cd: ChangeDetectorRef, 
+    private router: Router,
+    private snackBar: MatSnackBar) { }
 
   ngOnInit() {
     this.form = this.formBuilder.group({
@@ -41,9 +46,10 @@ export class RecipeCreationComponent implements OnInit {
       description: ['', [Validators.required, this.wordCountValidator(25)]],
       image: [null, Validators.required],
       difficulty: [null, Validators.required],
-      tags: this.formBuilder.array([this.formBuilder.control(null, Validators.required)])
+      tags: this.formBuilder.array([], Validators.required)
     });
   }
+  
 
   get tagsArray() {
     return this.form.get('tags') as FormArray;
@@ -78,12 +84,23 @@ export class RecipeCreationComponent implements OnInit {
     this.form.get('image')?.updateValueAndValidity();
   }
 
+  onAttachClick(event: Event, fileInput: HTMLInputElement) {
+    event.preventDefault();
+    fileInput.click();
+  }
+
+  
   onSubmit() {
-    //TODO: Implement form submission to recipe service
     if (this.form.valid) {
       console.log(this.form.value);
+      this.snackBar.open('Recipe created successfully!', '', {
+        duration: 3000, // 3 seconds
+      });
+      setTimeout(() => {
+        this.form.reset();
+        this.router.navigate(['/']);
+      }, 3000);
     }
-    this.form.reset();
   }
 
   toggleTagHelperMessage() {

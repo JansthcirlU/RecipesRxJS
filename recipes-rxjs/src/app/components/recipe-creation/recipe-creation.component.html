@@ -27,19 +27,18 @@
     </mat-form-field>
 
     <mat-form-field class="form-field">
-        <mat-label>Recipe image</mat-label>
-        <button mat-icon-button matPrefix (click)="f_input.click()">
+        <button mat-icon-button matPrefix (click)="onAttachClick($event, f_input)">
             <mat-icon>attach_file</mat-icon>
-        </button>
-        <input type="text" readonly matInput placeholder="Recipe Image" formControlName="image">
-        <input type="file" (change)="onFileSelected($event)" hidden #f_input>
-        <button mat-icon-button *ngIf="form.get('image')?.value" matSuffix (click)="clearImage()">
+          </button>
+          <input type="text" readonly matInput placeholder="Recipe Image" formControlName="image">
+          <input type="file" (change)="onFileSelected($event)" hidden #f_input>
+          <button mat-icon-button *ngIf="form.get('image')?.value" matSuffix (click)="clearImage()">
             <mat-icon>delete</mat-icon>
-        </button>
-        <mat-error *ngIf="form.get('image')?.hasError('required')">
+          </button>
+          <mat-error *ngIf="form.get('image')?.hasError('required')">
             Image is required
-        </mat-error>
-    </mat-form-field>
+          </mat-error>
+        </mat-form-field>
 
     <mat-form-field class="form-field">
         <mat-label>Difficulty</mat-label>
@@ -83,6 +82,6 @@
         </mat-error>
       </mat-form-field>
 
-    <button disabled="form.invalid" mat-raised-button type="submit">Submit</button>
+    <button [disabled]="form.invalid" mat-raised-button type="submit">Submit</button>
 </form>
 </div>
