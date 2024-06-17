@@ -29,8 +29,8 @@ import { COMMA, ENTER } from '@angular/cdk/keycodes';
 })
 export class RecipeCreationComponent implements OnInit {
   form!: FormGroup;
-  showHelperText = false;
-  readonly separatorKeysCodes: number[] = [ENTER, COMMA];
+  showTagHelperMessage = false;
+  readonly separatorKeys: number[] = [ENTER, COMMA];
   @ViewChild('tagInput') tagInput!: ElementRef<HTMLInputElement>;
 
   constructor(private formBuilder: FormBuilder, private cd: ChangeDetectorRef) { }
@@ -49,11 +49,11 @@ export class RecipeCreationComponent implements OnInit {
     return this.form.get('tags') as FormArray;
   }
 
-  addTag(tag: string) {
+  addTagToForm(tag: string) {
     if (tag) {
       this.tagsArray.push(this.formBuilder.control(tag, Validators.required));
       this.cd.detectChanges();
-      this.showHelperText = false;
+      this.showTagHelperMessage = false;
     }
   }
 
@@ -61,31 +61,33 @@ export class RecipeCreationComponent implements OnInit {
     const input = event.chipInput.inputElement;
     const value = event.value;
     if ((value || '').trim()) {
-      this.addTag(value.trim());
+      this.addTagToForm(value.trim());
     }
     if (input) {
       input.value = '';
     }
   }
 
-  removeTag(index: number) {
+  deleteTag(index: number) {
     this.tagsArray.removeAt(index);
     this.cd.detectChanges();
   }
 
-  removeImage() {
+  clearImage() {
     this.form.patchValue({ image: null });
     this.form.get('image')?.updateValueAndValidity();
   }
 
   onSubmit() {
+    //TODO: Implement form submission to recipe service
     if (this.form.valid) {
       console.log(this.form.value);
     }
+    this.form.reset();
   }
 
-  onTagInputChange() {
-    this.showHelperText = this.tagInput.nativeElement.value.length > 0;
+  toggleTagHelperMessage() {
+    this.showTagHelperMessage = this.tagInput.nativeElement.value.length > 0;
   }
 
   onFileSelected(event: Event) {

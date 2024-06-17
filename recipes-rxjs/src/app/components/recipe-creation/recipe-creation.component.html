@@ -33,7 +33,7 @@
         </button>
         <input type="text" readonly matInput placeholder="Recipe Image" formControlName="image">
         <input type="file" (change)="onFileSelected($event)" hidden #f_input>
-        <button mat-icon-button *ngIf="form.get('image')?.value" matSuffix (click)="removeImage()">
+        <button mat-icon-button *ngIf="form.get('image')?.value" matSuffix (click)="clearImage()">
             <mat-icon>delete</mat-icon>
         </button>
         <mat-error *ngIf="form.get('image')?.hasError('required')">
@@ -60,7 +60,7 @@
         <mat-chip-grid #chipGrid aria-label="Enter tags">
           <ng-container *ngFor="let tagControl of tagsArray.controls; let i = index">
             <mat-chip-row *ngIf="tagControl.value && tagControl.value.trim() !== ''"
-                          (removed)="removeTag(i)"
+                          (removed)="deleteTag(i)"
                           [aria-description]="'press enter to edit ' + tagControl.value">
               {{ tagControl.value }}
               <button matChipRemove [attr.aria-label]="'remove ' + tagControl.value">
@@ -71,11 +71,11 @@
           <input placeholder="New tag..."
                  #tagInput
                  [matChipInputFor]="chipGrid"
-                 [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-                 (input)="onTagInputChange()"
+                 [matChipInputSeparatorKeyCodes]="separatorKeys"
+                 (input)="toggleTagHelperMessage()"
                  (matChipInputTokenEnd)="addTagFromInput($event)">
         </mat-chip-grid>
-        <div class="helper-text" *ngIf="showHelperText">
+        <div class="tag-helper-message" *ngIf="showTagHelperMessage">
           Press Enter to add a tag
         </div>
         <mat-error *ngIf="form.get('tags')?.invalid">
@@ -83,6 +83,6 @@
         </mat-error>
       </mat-form-field>
 
-    <button class mat-raised-button type="submit">Submit</button>
+    <button disabled="form.invalid" mat-raised-button type="submit">Submit</button>
 </form>
 </div>
