@@ -46,7 +46,8 @@ export class RecipeCreationComponent implements OnInit {
       description: ['', [Validators.required, this.wordCountValidator(25)]],
       image: [null, Validators.required],
       difficulty: [null, Validators.required],
-      tags: this.formBuilder.array([], [Validators.required, this.minLengthArray(1)])
+      tags: this.formBuilder.array( [],
+         [Validators.required, this.minLengthArray(1)])
     });
   }
   
@@ -58,7 +59,6 @@ export class RecipeCreationComponent implements OnInit {
   addTagToForm(tag: string) {
     if (tag) {
       this.tagsArray.push(this.formBuilder.control(tag, Validators.required));
-      this.cd.detectChanges();
       this.showTagHelperMessage = false;
     }
   }
