@@ -1,0 +1,26 @@
+.recipe-creation-form {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+}
+
+.recipe-creation-overview {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.mat-form-field {
+  margin-bottom: 16px;
+}
+
+.mat-chip-grid {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.mat-chip-row {
+  margin: 4px;
+}

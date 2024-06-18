@@ -1,15 +1,17 @@
 <div [formGroup]="filterForm">
-    <label for="keyword">Keyword</label>
-    <input type="text" id="keyword" formControlName="keyword">
-    <div>
+  <label for="keyword">Keyword</label>
+  <input type="text" id="keyword" formControlName="keyword" />
+  <div>
     <label for="category">Category:</label>
     <select id="category" formControlName="category">
       <option value="">All</option>
-      <option *ngFor="let category of categories" [value]="category">{{category}}</option>
+      <option *ngFor="let category of categories" [value]="category">
+        {{ category }}
+      </option>
     </select>
-</div>
-    <label for="ingedients">Ingredients</label>
-    <input type="text" id="ingredients" formControlName="ingredients">
-    <button (click)="onSubmit()">Filter</button>
-    <button (click)="onReset()">Reset</button>
+  </div>
+  <label for="ingedients">Ingredients</label>
+  <input type="text" id="ingredients" formControlName="ingredients" />
+  <button (click)="onSubmit()">Filter</button>
+  <button (click)="onReset()">Reset</button>
 </div>

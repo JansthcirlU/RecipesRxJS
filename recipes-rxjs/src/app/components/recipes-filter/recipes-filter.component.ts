@@ -9,34 +9,31 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [ReactiveFormsModule, CommonModule],
   templateUrl: './recipes-filter.component.html',
-  styleUrl: './recipes-filter.component.css'
+  styleUrl: './recipes-filter.component.css',
 })
 export class RecipesFilterComponent {
-
-  public categories : Category[] = ['Main', 'Dessert', 'Appetizer'];
+  public categories: Category[] = ['Main', 'Dessert', 'Appetizer'];
 
   filterForm = new FormGroup({
     keyword: new FormControl(''),
     category: new FormControl(''),
     ingredients: new FormControl(''),
   });
-  
-  constructor(private recipesService: RecipesService) {
-    
 
-   }
+  constructor(private recipesService: RecipesService) {}
 
   onSubmit() {
     let keyword = this.filterForm.get('keyword')?.value;
-    
+
     let category = this.filterForm.get('category')?.value as Category;
-    
+
     let ingredients = this.filterForm.get('ingredients')?.value;
-    
+
     this.recipesService.setFilters(
-      keyword ?? '', 
-      category ?? '', 
-      ingredients?? '');
+      keyword ?? '',
+      category ?? '',
+      ingredients ?? '',
+    );
   }
 
   onReset() {
