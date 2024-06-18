@@ -1,9 +1,12 @@
 <mat-card class="mat-card-overview-results">
-    <mat-card-content>
-        {{(recipes$ | async)?.length}} recipes found
-    </mat-card-content>
+  <mat-card-content>
+    {{ (recipes$ | async)?.length }} recipes found
+  </mat-card-content>
 </mat-card>
 
 <div class="recipe-overview" *ngIf="recipes$ | async as recipes">
-    <app-recipe-card *ngFor="let recipe of recipes" [recipe]="recipe"></app-recipe-card>
+  <app-recipe-card
+    *ngFor="let recipe of recipes"
+    [recipe]="recipe"
+  ></app-recipe-card>
 </div>

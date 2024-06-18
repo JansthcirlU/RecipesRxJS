@@ -11,10 +11,11 @@ import { RecipeCreationComponent } from './components/recipe-creation/recipe-cre
   standalone: true,
   imports: [
     RecipeOverviewComponent,
-    RouterOutlet, 
+    RouterOutlet,
     RecipesFilterComponent,
-    RecipeCreationComponent, 
-    NavbarComponent],
+    RecipeCreationComponent,
+    NavbarComponent,
+  ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })

@@ -1,56 +1,59 @@
 mat-toolbar {
-    background-color: aliceblue;
-    position: sticky;
-    color: black;
-    display: flex;
-    justify-content: space-between;
-    box-shadow: 0px 4px 6px -1px rgba(0, 0, 0, 0.2), 0px 2px 4px -1px rgba(0, 0, 0, 0.12);
+  background-color: aliceblue;
+  position: sticky;
+  color: black;
+  display: flex;
+  justify-content: space-between;
+  box-shadow:
+    0px 4px 6px -1px rgba(0, 0, 0, 0.2),
+    0px 2px 4px -1px rgba(0, 0, 0, 0.12);
 }
 
 .mat-icon-button {
-    background-color: transparent;
-    border: none;
-    color: inherit;
-    font: inherit;
-    cursor: pointer;
-    outline: inherit;
-    padding: 35px;
-    margin: 0;
-    width: 1px;
-    text-align:center;
-    text-decoration: none;
-    display: inline-block;
-
+  background-color: transparent;
+  border: none;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+  padding: 35px;
+  margin: 0;
+  width: 1px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
 }
 .mat-icon-button:hover {
-    background-color: transparent;
+  background-color: transparent;
 }
 
 button {
-    background-color: transparent;
-    border: none;
-    color: inherit;
-    font: inherit;
-    cursor: pointer;
-    outline: inherit;
-    padding: 18px;
-    width: 100%;
-    margin: 0;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
+  background-color: transparent;
+  border: none;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+  padding: 18px;
+  width: 100%;
+  margin: 0;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
 }
 
 button:hover {
-    background-color: rgba(0, 0, 0, 0.04);
+  background-color: rgba(0, 0, 0, 0.04);
 }
 
-mat-toolbar{
-    background-color: aliceblue;
-    position: sticky;
-    color: black;
-    display: flex;
-    justify-content: space-between;
-    padding: 0;
-    box-shadow: 0px 4px 6px -1px rgba(0, 0, 0, 0.2), 0px 2px 4px -1px rgba(0, 0, 0, 0.12);
+mat-toolbar {
+  background-color: aliceblue;
+  position: sticky;
+  color: black;
+  display: flex;
+  justify-content: space-between;
+  padding: 0;
+  box-shadow:
+    0px 4px 6px -1px rgba(0, 0, 0, 0.2),
+    0px 2px 4px -1px rgba(0, 0, 0, 0.12);
 }

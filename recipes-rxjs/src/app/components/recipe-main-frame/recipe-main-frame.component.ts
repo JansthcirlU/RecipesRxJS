@@ -5,13 +5,8 @@ import { RecipeOverviewComponent } from '../recipe-overview/recipe-overview.comp
 @Component({
   selector: 'app-recipe-main-frame',
   standalone: true,
-  imports: [
-    RecipeOverviewComponent,
-    RecipesFilterComponent
-  ],
+  imports: [RecipeOverviewComponent, RecipesFilterComponent],
   templateUrl: './recipe-main-frame.component.html',
-  styleUrl: './recipe-main-frame.component.css'
+  styleUrl: './recipe-main-frame.component.css',
 })
-export class RecipeMainFrameComponent {
-
-}
+export class RecipeMainFrameComponent {}

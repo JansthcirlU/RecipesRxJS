@@ -3,6 +3,6 @@ import { RecipeCreationComponent } from './components/recipe-creation/recipe-cre
 import { RecipeMainFrameComponent } from './components/recipe-main-frame/recipe-main-frame.component';
 
 export const routes: Routes = [
-    { path: '', component: RecipeMainFrameComponent},
-    { path: 'create', component: RecipeCreationComponent },
+  { path: '', component: RecipeMainFrameComponent },
+  { path: 'create', component: RecipeCreationComponent },
 ];

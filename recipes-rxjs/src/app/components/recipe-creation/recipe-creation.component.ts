@@ -1,6 +1,20 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, ReactiveFormsModule, Validators, AbstractControl, ValidationErrors } from '@angular/forms';
+import {
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
+import {
+  FormArray,
+  FormBuilder,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+  AbstractControl,
+  ValidationErrors,
+} from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
@@ -24,10 +38,10 @@ import { MatSnackBar } from '@angular/material/snack-bar';
     MatButtonModule,
     MatChipsModule,
     ReactiveFormsModule,
-    CommonModule
+    CommonModule,
   ],
   templateUrl: './recipe-creation.component.html',
-  styleUrls: ['./recipe-creation.component.css']
+  styleUrls: ['./recipe-creation.component.css'],
 })
 export class RecipeCreationComponent implements OnInit {
   form!: FormGroup;
@@ -35,10 +49,12 @@ export class RecipeCreationComponent implements OnInit {
   readonly separatorKeys: number[] = [ENTER, COMMA];
   @ViewChild('tagInput') tagInput!: ElementRef<HTMLInputElement>;
 
-  constructor(private formBuilder: FormBuilder, 
-    private cd: ChangeDetectorRef, 
+  constructor(
+    private formBuilder: FormBuilder,
+    private cd: ChangeDetectorRef,
     private router: Router,
-    private snackBar: MatSnackBar) { }
+    private snackBar: MatSnackBar,
+  ) {}
 
   ngOnInit() {
     this.form = this.formBuilder.group({
@@ -46,11 +62,12 @@ export class RecipeCreationComponent implements OnInit {
       description: ['', [Validators.required, this.wordCountValidator(25)]],
       image: [null, Validators.required],
       difficulty: [null, Validators.required],
-      tags: this.formBuilder.array( [],
-         [Validators.required, this.minLengthArray(1)])
+      tags: this.formBuilder.array(
+        [],
+        [Validators.required, this.minLengthArray(1)],
+      ),
     });
   }
-  
 
   get tagsArray() {
     return this.form.get('tags') as FormArray;
@@ -89,7 +106,6 @@ export class RecipeCreationComponent implements OnInit {
     fileInput.click();
   }
 
-  
   onSubmit() {
     if (this.form.valid) {
       console.log(this.form.value);
@@ -112,7 +128,7 @@ export class RecipeCreationComponent implements OnInit {
     if (input.files && input.files.length > 0) {
       const file = input.files[0];
       this.form.patchValue({
-        image: file.name
+        image: file.name,
       });
       this.form.get('image')?.updateValueAndValidity();
     }
@@ -121,7 +137,9 @@ export class RecipeCreationComponent implements OnInit {
   wordCountValidator(maxWords: number) {
     return (control: AbstractControl): ValidationErrors | null => {
       const words = control.value ? control.value.split(/\s+/) : [];
-      return words.length > maxWords ? { maxWords: { actualWords: words.length, maxWords } } : null;
+      return words.length > maxWords
+        ? { maxWords: { actualWords: words.length, maxWords } }
+        : null;
     };
   }
 

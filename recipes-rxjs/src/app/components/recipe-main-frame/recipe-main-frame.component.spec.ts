@@ -8,10 +8,9 @@ describe('RecipeMainFrameComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [RecipeMainFrameComponent]
-    })
-    .compileComponents();
-    
+      imports: [RecipeMainFrameComponent],
+    }).compileComponents();
+
     fixture = TestBed.createComponent(RecipeMainFrameComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
